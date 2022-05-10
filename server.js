@@ -21,7 +21,7 @@ var port = process.env.PORT || 7000;
 
 // simple get request
 app.get("/", function (req, res) {
-    res.send("Hello World !");
+    res.send("Welcome to Mr.Bucks Services !");
 });
 
 // creating request for token generation
