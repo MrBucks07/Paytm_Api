@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mr Bucks</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            padding-top: 50px;
+            text-align: center;
+        }
+
+        #apititle {
+            text-align: center;
+            color: brown;
+        }
+
+        h5 {
+            text-align: start;
+            color: green;
+        }
+
+        h4 {
+            color: rgb(0, 154, 164);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="jumbotron">
+            <!-- <center>
+                <h1>Mr Bucks Web Services!</h1>
+            </center> -->
+
+            <!-- or -->
+
+            <h1 id="apititle">Mr Bucks Web Services!</h1>
+        </div>
+        <div class="jumbotron">
+            <h4>This is an Api to generate Paytm Transaction Token</h>
+                <h4>------------------------------</h4>
+                <h4>Simply you need to send a request on end point : /genTransactionToken</h4>
+        </div>
+
+        <div class="jumbotron">
+            <h5>Required parameters in body (Json)</h5>
+            <h5>----------------------------------</h5>
+            <h5>1 : mid (merchant id)</h5>
+            <h5>2 : keySecret</h5>
+            <h5>3 : orderId</h5>
+            <h5>4 : callBackUrl (same as requesting url (copy and paste))</h5>
+            <h5>5 : websiteName (WEBSTAGING)</h5>
+            <h5>6 : txnAmount (string not int)</h5>
+            <h5>7 : custId</h5>
+        </div>
+    </div>
+
+</body>
+
+</html>

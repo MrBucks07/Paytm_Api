@@ -5,8 +5,9 @@
 
 // required dependency
 var express = require('express');
-var checkSumLib = require('./Paytm/checksum');
+var checkSumLib = require('./checksum');
 var https = require('https');
+var path = require('path');
 
 // instance of express
 var app = new express();
@@ -21,7 +22,9 @@ var port = process.env.PORT || 7000;
 
 // simple get request
 app.get("/", function (req, res) {
-    res.send("Welcome to Mr.Bucks Services !");
+    res.status(200);
+    res.sendFile(path.join(__dirname, "/index.html"));
+    // res.send("Welcome to Mr.Bucks Services ! \n This is an api to generate Paytm transaction token");
 });
 
 // creating request for token generation
@@ -39,7 +42,7 @@ app.post("/genTransactionToken", (req, res) => {
     var callbackUrl = req.body.callbackUrl;
     var websiteName = req.body.websiteName;
     var txnAmount = req.body.txnAmount;
-    var email = req.body.email;
+    // var email = req.body.email;
     var custId = req.body.custId;
 
     //creating paytmPayload body object
@@ -55,8 +58,11 @@ app.post("/genTransactionToken", (req, res) => {
         },
         "userInfo": {
             "custId": custId,
-            "email": email
-        }
+            // "email": email
+        },
+        "enablePaymentMode": [{
+            "mode": "BALANCE"
+        }]
     }
 
     console.log(JSON.stringify(paytmPayload.body));
@@ -85,17 +91,17 @@ app.post("/genTransactionToken", (req, res) => {
 
             //making https request to paytm transaction api
             var response = "";
-            var reqResponse = https.request(options, (reqResponse)=>{
+            var reqResponse = https.request(options, (reqResponse) => {
                 reqResponse.on('data', (chunk) => {
                     response += chunk;
                 });
 
-                reqResponse.on('end', ()=>{
+                reqResponse.on('end', () => {
                     response = JSON.parse(response);
                     console.log("Response : ", response);
-                    
+
                     // sending response to requester
-                    res.send(response.body.txnToken);
+                    res.send(response);
                     return 0;
                 });
             });
